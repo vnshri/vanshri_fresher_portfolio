@@ -352,6 +352,10 @@ font-size: 14px;
     box-shadow: 0 1px 9px rgba(100, 255, 218, 0.5);
 }
 
+ /* -------------------------- */ 
+
+ /* ----------------------  */
+
 .section2 {
   min-height: 70vh;
   padding: 50px;
@@ -359,6 +363,8 @@ font-size: 14px;
 
   scroll-snap-align: start;    /* optional if using snap */
 }
+
+
 /* Project section ---------------- */
 
 
@@ -442,15 +448,17 @@ font-size: 14px;
     font-size: 20px;
 }
 
+
+/* .project-card:hover .tech-tags .tag{
+  border: 1px solid #94a3b8 ;
+} */
+
+
 /* .card4{
   margin-bottom: 60px;
 } */
 
 /* project end -------------------- */
-
-/* Contact SEC --------------- */
-/* Contact Section --------------- */
-
 
 
 /* Contact Section --------------- */
@@ -687,3 +695,121 @@ font-size: 14px;
 
 
 
+section {
+  scroll-margin-top: 140px;
+}
+
+
+/*  */
+
+
+/* Animated underline for Skills heading */
+.section h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--heading-color);
+  letter-spacing: 0.8px;
+  margin-bottom: 26px;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+    width: 60%; /* starting width */
+
+  bottom: -6px;
+  height: 2px;
+  background-color: #e2e8f0;
+  width: 0;
+  animation: underlineLoop 8s ease-in-out infinite;
+}
+
+
+/* underline animation */
+@keyframes underlineLoop {
+  0%, 100% { width: 0; }
+  50% { width: 120%; }
+}
+
+
+/* skils */
+
+
+
+/*  */
+
+
+.skill-tag {
+  position: relative;
+  padding: 10px 18px;
+  border-radius: 22px;
+  background: rgba(17, 34, 64, 0.45); /* glassy navy */
+  color: #64ffda;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(100,255,218,0.15);
+  cursor: default;
+  backdrop-filter: blur(6px); 
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+
+/* Soft subtle moving light */
+.skill-tag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -160%;
+  width: 260%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.07) 45%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.07) 55%,
+    transparent 100%
+  );
+  animation: softSweep 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes softSweep {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(60%); }
+}
+
+/* Hover = smooth glass lift */
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.10);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(100,255,218,0.18);
+}
+
+
+/* section fade effect  */
+
+/* section fade-in from left/right */
+.left-section {
+  opacity: 0;
+  transform: translateX(-30px); /* slide from left */
+  transition: opacity 0.9s ease-in, transform 0.9s ease-in;
+  transition-delay: 0.25s; /* left appears first */
+}
+
+.right-section {
+  opacity: 0;
+  transform: translateX(-30px); /* slide from right */
+  transition: opacity 0.9s ease-in, transform 0.9s ease-in;
+  transition-delay: 0.15s; /* right appears slightly after */
+}
+
+/* trigger fade-in when page loaded */
+.page-loaded .left-section,
+.page-loaded .right-section {
+  opacity: 1;
+  transform: translateX(0);
+}

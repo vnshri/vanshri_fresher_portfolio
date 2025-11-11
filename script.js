@@ -14,6 +14,9 @@ class SplitLoader {
         setTimeout(() => {
             this.loadingScreen.style.display = 'none';
             this.mainContainer.classList.add('loaded');
+            // section fade in effects
+            document.body.classList.add("page-loaded");
+
             this.initNavigation();
             this.initSpotlight();
             this.enableLeftScrollControl();   // NEW
@@ -105,3 +108,34 @@ type();
 
 // section fade in
 
+// Add subtle animation to cards on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    // Initial animation
+    skillCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 200 * index);
+    });
+    
+    // Add scroll effect
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        document.querySelector('.skills-section').style.transform = `translateY(${rate}px)`;
+    });
+    
+    // Add click effect to skill cards
+    skillCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    });
+});
